@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InTouch AI - Deaf Tourism Assistant</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f8fc;
+text-align:center;
+padding:40px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.1);
+}
+
+h1{
+color:#0078d4;
+}
+
+button{
+background:#0078d4;
+color:white;
+border:none;
+padding:15px 25px;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+}
+
+#result{
+margin-top:30px;
+font-size:22px;
+font-weight:bold;
+color:#333;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>InTouch AI</h1>
+
+<h2>Deaf Tourism Assistant</h2>
+
+<p>
+Speak in Greek or English and receive accessible information.
+</p>
+
+<button onclick="demo()">
+Start Demo
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function demo(){
+
+document.getElementById("result").innerHTML=
+"Welcome to Athens. The Acropolis is open today from 08:00 to 20:00.";
+
+}
+
+</script>
+
+</body>
+</html>
