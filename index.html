@@ -1,80 +1,273 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>InTouch AI - Deaf Tourism Assistant</title>
-
 <style>
+*{box-sizing:border-box}
 body{
-font-family:Arial,sans-serif;
-background:#f4f8fc;
-text-align:center;
-padding:40px;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(0,0,0,0.1);
-}
-
-h1{
-color:#0078d4;
-}
-
-button{
-background:#0078d4;
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#06162e,#0b4f8a,#04b6d8);
 color:white;
-border:none;
-padding:15px 25px;
+}
+.container{
+max-width:1150px;
+margin:auto;
+padding:40px 20px;
+}
+.hero{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:30px;
+align-items:center;
+min-height:90vh;
+}
+.badge{
+display:inline-block;
+background:rgba(255,255,255,.14);
+padding:10px 16px;
+border-radius:30px;
+margin-bottom:18px;
+}
+h1{
+font-size:58px;
+line-height:1;
+margin:0 0 15px;
+}
+h2{
+font-size:26px;
+font-weight:400;
+color:#d9f8ff;
+}
+p{
 font-size:18px;
-border-radius:10px;
+line-height:1.6;
+color:#eaf9ff;
+}
+.buttons{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+margin-top:28px;
+}
+button{
+border:0;
+border-radius:14px;
+padding:15px 22px;
+font-size:16px;
+font-weight:bold;
 cursor:pointer;
 }
-
-#result{
-margin-top:30px;
-font-size:22px;
-font-weight:bold;
-color:#333;
+.primary{background:#ffffff;color:#06345f}
+.secondary{background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.35)}
+.card{
+background:white;
+color:#102033;
+border-radius:28px;
+padding:28px;
+box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+.avatar{
+width:120px;
+height:120px;
+border-radius:50%;
+background:linear-gradient(135deg,#06d6ff,#0057ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:55px;
+margin:auto;
+}
+.output{
+background:#f2f8fb;
+border-radius:18px;
+padding:18px;
+margin-top:20px;
+font-size:18px;
+line-height:1.7;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:40px;
+}
+.feature{
+background:rgba(255,255,255,.12);
+padding:22px;
+border-radius:22px;
+border:1px solid rgba(255,255,255,.2);
+}
+.demo{
+margin-top:50px;
+background:rgba(255,255,255,.12);
+padding:28px;
+border-radius:28px;
+border:1px solid rgba(255,255,255,.25);
+}
+textarea{
+width:100%;
+min-height:110px;
+border-radius:16px;
+border:0;
+padding:16px;
+font-size:17px;
+margin-top:12px;
+}
+.result{
+background:white;
+color:#102033;
+border-radius:18px;
+padding:22px;
+margin-top:18px;
+font-size:18px;
+line-height:1.7;
+}
+.lang{
+margin-top:14px;
+}
+select{
+padding:12px;
+border-radius:12px;
+border:0;
+font-size:16px;
+}
+@media(max-width:800px){
+.hero{grid-template-columns:1fr}
+h1{font-size:42px}
+.grid{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
-
 <div class="container">
 
+<section class="hero">
+<div>
+<div class="badge">AI Accessibility for Tourism</div>
 <h1>InTouch AI</h1>
-
 <h2>Deaf Tourism Assistant</h2>
-
 <p>
-Speak in Greek or English and receive accessible information.
+An AI-powered assistant that converts spoken tourism information into clear, accessible text for Deaf and Hard-of-Hearing travellers.
 </p>
+<p>
+Designed for airports, hotels, museums, hospitals, conferences and public services.
+</p>
+<div class="buttons">
+<button class="primary" onclick="scrollToDemo()">Try Investor Demo</button>
+<button class="secondary" onclick="speakDemo()">Voice Preview</button>
+</div>
+</div>
 
-<button onclick="demo()">
-Start Demo
-</button>
+<div class="card">
+<div class="avatar">🤟</div>
+<h2 style="color:#06345f;text-align:center;font-weight:bold;">Accessible Travel, Instantly</h2>
+<div class="output" id="heroOutput">
+✈️ Flight: Heraklion<br>
+⏰ Delay: 2 hours<br>
+🌧️ Reason: Weather conditions<br>
+📍 Action: Stay near the gate
+</div>
+</div>
+</section>
 
-<div id="result"></div>
+<div class="grid">
+<div class="feature">
+<h3>🎤 Speech to Accessible Text</h3>
+<p>Captures spoken announcements and transforms them into clear written information.</p>
+</div>
+<div class="feature">
+<h3>🌍 Greek + English</h3>
+<p>Supports bilingual communication for tourism, hospitality and public-service settings.</p>
+</div>
+<div class="feature">
+<h3>🤟 Future Avatar</h3>
+<p>Designed to evolve into sign-language avatar support for inclusive communication.</p>
+</div>
+</div>
+
+<section class="demo" id="demo">
+<h2><strong>Live Pitch Demo</strong></h2>
+<p>Paste or type a tourism announcement. InTouch AI will turn it into accessible information.</p>
+
+<div class="lang">
+<select id="language">
+<option value="el">Ελληνικά</option>
+<option value="en">English</option>
+</select>
+</div>
+
+<textarea id="inputText">Καλημέρα. Η πτήση σας για το Ηράκλειο έχει καθυστέρηση περίπου δύο ώρες λόγω δυσμενών καιρικών συνθηκών. Παραμείνετε κοντά στην πύλη Β12.</textarea>
+
+<div class="buttons">
+<button class="primary" onclick="processDemo()">Transform to Accessible Text</button>
+<button class="secondary" onclick="startVoice()">🎤 Speak</button>
+</div>
+
+<div class="result" id="result">
+Το αποτέλεσμα θα εμφανιστεί εδώ.
+</div>
+</section>
 
 </div>
 
 <script>
-
-function demo(){
-
-document.getElementById("result").innerHTML=
-"Welcome to Athens. The Acropolis is open today from 08:00 to 20:00.";
-
+function scrollToDemo(){
+document.getElementById("demo").scrollIntoView({behavior:"smooth"});
 }
 
-</script>
+function processDemo(){
+const text=document.getElementById("inputText").value.toLowerCase();
+const lang=document.getElementById("language").value;
+let result="";
 
+if(text.includes("πτήση") || text.includes("flight")){
+result = lang==="el"
+? "✈️ Πτήση: Ηράκλειο<br>⏰ Καθυστέρηση: περίπου 2 ώρες<br>🌧️ Αιτία: δυσμενείς καιρικές συνθήκες<br>📍 Ενέργεια: παραμείνετε κοντά στην πύλη Β12"
+: "✈️ Flight: Heraklion<br>⏰ Delay: about 2 hours<br>🌧️ Reason: bad weather conditions<br>📍 Action: stay near Gate B12";
+}
+else if(text.includes("πρωινό") || text.includes("breakfast")){
+result = lang==="el"
+? "🍳 Πρωινό<br>⏰ Ώρες: 07:00 - 10:30<br>📍 Τοποθεσία: εστιατόριο 1ου ορόφου"
+: "🍳 Breakfast<br>⏰ Time: 07:00 - 10:30<br>📍 Location: first-floor restaurant";
+}
+else if(text.includes("μουσείο") || text.includes("museum") || text.includes("ξενάγηση")){
+result = lang==="el"
+? "🏛️ Ξενάγηση<br>⏰ Έναρξη: 12:00<br>⌛ Διάρκεια: περίπου 1 ώρα<br>👥 Ενέργεια: μείνετε με την ομάδα σας"
+: "🏛️ Guided tour<br>⏰ Start: 12:00<br>⌛ Duration: about 1 hour<br>👥 Action: stay with your group";
+}
+else{
+result = lang==="el"
+? "✅ Προσβάσιμη σύνοψη:<br>" + document.getElementById("inputText").value
+: "✅ Accessible summary:<br>" + document.getElementById("inputText").value;
+}
+
+document.getElementById("result").innerHTML=result;
+}
+
+function speakDemo(){
+const text="InTouch AI helps Deaf and Hard-of-Hearing travellers receive clear accessible tourism information.";
+const utterance=new SpeechSynthesisUtterance(text);
+utterance.lang="en-US";
+speechSynthesis.speak(utterance);
+}
+
+function startVoice(){
+const SpeechRecognition=window.SpeechRecognition || window.webkitSpeechRecognition;
+if(!SpeechRecognition){
+alert("Speech recognition is not supported in this browser. Try Chrome.");
+return;
+}
+const recognition=new SpeechRecognition();
+recognition.lang=document.getElementById("language").value==="el" ? "el-GR" : "en-US";
+recognition.start();
+recognition.onresult=function(event){
+document.getElementById("inputText").value=event.results[0][0].transcript;
+processDemo();
+};
+}
+</script>
 </body>
 </html>
